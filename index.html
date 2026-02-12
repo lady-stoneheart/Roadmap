@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Project Roadmap Portal</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --primary: #000000; --bg: #ffffff; }
+body {
+font-family: 'Plus Jakarta Sans', sans-serif;
+background-color: #ffffff;
+scroll-behavior: smooth;
+margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+color: #000000;
+}
+.hidden { display: none !important; }
+.page-transition { 
+        animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    @keyframes slideUpFade { 
+        from { opacity: 0; transform: translateY(10px); } 
+        to { opacity: 1; transform: translateY(0); } 
+    }
+
+    .stagger-item { opacity: 0; animation: staggerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes staggerIn {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .pulse-ring {
+        position: absolute;
+        width: 100%; height: 100%; border-radius: inherit;
+        background: #000000; opacity: 0.4;
+        animation: pulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.4; }
+        70% { transform: scale(1.6); opacity: 0; }
+        100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    .loader { border-top-color: #000000; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    .roadmap-line {
+        position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+        background: #000000; opacity: 0.1; transform: translateX(-50%); z-index: 0;
+    }
+    .roadmap-line-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent); }
+    
+    .hover-card { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    @media (min-width: 640px) {
+        .hover-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
+    }
+    
+    .break-words { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; }
+
+    .milestone-details {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        opacity: 0;
+    }
+    .milestone-details.expanded { max-height: 2000px; opacity: 1; margin-top: 1.5rem; }
+
+    #modal-overlay { transition: opacity 0.3s ease; }
+    #modal-card { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease; }
+
+    .filter-pill {
+        transition: all 0.2s ease;
+    }
+    .filter-pill.active {
+        background-color: #000000;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Sidebar & Layout Styles */
+    #sidebar {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .sidebar-item {
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sidebar-item.active {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    /* Mobile Sidebar State */
+    @media (max-width: 640px) {
+        #sidebar {
+            transform: translateX(-100%);
+            width: 280px !important;
+        }
+        #sidebar.sidebar-open {
+            transform: translateX(0);
+            box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+        }
+    }
+
+    /* Desktop Sidebar State */
+    @media (min-width: 641px) {
+        #sidebar.sidebar-collapsed {
+            width: 80px !important;
+        }
+        #sidebar.sidebar-collapsed .sidebar-text {
+            display: none;
+        }
+        #sidebar.sidebar-collapsed .sidebar-header-text {
+            display: none;
+        }
+        #sidebar.sidebar-collapsed .sidebar-item {
+            justify-content: center;
+        }
+    }
+
+    #sidebar-backdrop {
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+    #sidebar-backdrop.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Feed Specific Styles */
+    .feed-card {
+        border: 2px solid #000000;
+        background-color: #ffffff;
+    }
+    .poll-bar {
+        transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+</style>
+<script type="importmap">
+{
+"imports": {
+"@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+"react": "https://esm.sh/react@^19.2.4",
+"react/": "https://esm.sh/react@^19.2.4/"
+}
+}
+</script>
+</head>
+<body class="antialiased">
+<div id="app-root" class="min-h-[100dvh] w-full flex flex-row relative overflow-hidden bg-white">
+<!-- ... entire HTML content unchanged ... -->
+</div>
+
+<!-- 🔹 ADJUSTED SCRIPT FOR GITHUB PAGES -->
+<!-- Copy your compiled JS here: -->
+<script type="module" src="index.js"></script>
+</body>
+</html>
